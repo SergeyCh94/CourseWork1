@@ -1,49 +1,88 @@
 public class Main {
-    public static void main(String[] args) {
-        Employee employee1 = new Employee("Иванов Иван Иванович", 1, 60.000);
-        System.out.println(Employee.id);
-
+    static Employee[] employees = new Employee[10];
+    public static void listOfEmployees() {
+        for (Object s : employees){
+            if(s != null) {
+                System.out.println(s);
+            }
+        }
     }
 
-    public static class Employee {
-        private String fio;
-        private int departmentNumber;
-        private double salary;
-        private static int id;
-
-        public Employee(String fio, int departmentNumber, double salary) {
-            this.fio = fio;
-            this.departmentNumber = departmentNumber;
-            this.salary = salary;
-            id++;
-        }
-
-        public String getFio() {
-            return fio;
-        }
-
-        public int getDepartmentNumber() {
-            return departmentNumber;
-        }
-
-        public double getSalary() {
-            return salary;
-        }
-
-        public static int getId() {
-            return id;
-        }
-
-        public void setDepartmentNumber(int departmentNumber) {
-            if (departmentNumber < 1 || departmentNumber > 5) {
-                System.out.println("У нас нет такого отдела: " + departmentNumber);
-                return;
+    public static void salaryCosts() {
+        int sum = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if(employees[i] != null){
+                sum += employees[i].getSalary();
             }
-            this.departmentNumber = departmentNumber;
         }
+        System.out.println("Сумма затрат на зарплаты в месяц: " + sum + " рублей.");
+    }
 
-        public void setSalary(double salary) {
-            this.salary = salary;
+    public static void minSalary() {
+        int min = employees[0].getSalary();
+        for (int i = 0; i < employees.length; i++){
+            if (employees[i] != null) {
+                min = Math.min(min, employees[i].getSalary());
+            }
         }
+        System.out.println("Минимальная сумма трат за месяц составила: " + min + " рублей.");
+    }
+
+    public static void maxSalary() {
+        int max = employees[0].getSalary();
+        for (int i = 0; i < employees.length; i++){
+            if (employees[i] != null) {
+                max = Math.max(max, employees[i].getSalary());
+            }
+        }
+        System.out.println("Максимальная сумма трат за месяц составила " + max+ " рублей.");
+    }
+
+    public static void averageSalary() {
+        int sum = 0;
+        int count = 0;
+        int averageSum;
+        for (int i = 0; i < employees.length; i++) {
+            if(employees[i] != null){
+                sum += employees[i].getSalary();
+            }
+        }
+        for (int i = 0; i < employees.length; i++) {
+            if(employees[i] != null){
+                count++;
+            }
+        }
+        averageSum = sum / count;
+        System.out.println("Cреднее значение зарплат: " + averageSum + " рублей.");
+    }
+
+    public static void listFullName() {
+        for (int i = 0; i < employees.length; i++){
+            if (employees[i] != null) {
+                String name = employees[i].getFullName();
+                System.out.println("Ф.И.О сотрудников: " + " " + employees[i].getId() + " " + name);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        employees[0] = new Employee("Иванов Иван Иванович", 1, 60000);
+        employees[1] = new Employee("Иванов Иван Иванович", 1, 65000);
+        employees[2] = new Employee("Иванов Иван Иванович", 1, 70000);
+        employees[3] = new Employee("Иванов Иван Иванович", 1, 75000);
+        employees[4] = new Employee("Иванов Иван Иванович", 1, 80000);
+        employees[5] = new Employee("Иванов Иван Иванович", 1, 85000);
+
+        listOfEmployees();
+        System.out.println("\n");
+        salaryCosts();
+        System.out.println("\n");
+        minSalary();
+        System.out.println("\n");
+        maxSalary();
+        System.out.println("\n");
+        averageSalary();
+        System.out.println("\n");
+        listFullName();
     }
 }

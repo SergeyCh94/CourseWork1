@@ -5,7 +5,7 @@ public class Main {
         for (int i = 0; i < employees.length; i++) {
             if(employees[i] != null){
                 String s = employees[i].getFullName();
-                System.out.println(s);;
+                System.out.println(s);
             }
         }
     }
@@ -37,8 +37,7 @@ public class Main {
         int max = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++){
             if (employees[i] != null) {
-                max = Math.min(max, employees[i].getSalary());
-                temp = i;
+                max = Math.max(max, employees[i].getSalary());
             }
         }
         return employees[temp];

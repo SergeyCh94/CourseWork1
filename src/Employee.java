@@ -1,9 +1,9 @@
 public class Employee {
-    String fullName;
-    int department;
-    int salary;
-    static int counter;
-    int id;
+    private String fullName;
+    private int department;
+    private int salary;
+    private static int counter;
+    private int id;
 
     public Employee (String fullName, int department, int salary) {
         this.fullName = fullName;

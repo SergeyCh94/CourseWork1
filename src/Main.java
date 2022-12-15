@@ -1,41 +1,47 @@
+
 public class Main {
     static Employee[] employees = new Employee[10];
     public static void listOfEmployees() {
-        for (Object s : employees){
-            if(s != null) {
-                System.out.println(s);
+        for (int i = 0; i < employees.length; i++) {
+            if(employees[i] != null){
+                String s = employees[i].getFullName();
+                System.out.println(s);;
             }
         }
     }
 
-    public static void salaryCosts() {
+    public static int salaryCosts() {
         int sum = 0;
         for (int i = 0; i < employees.length; i++) {
-            if(employees[i] != null){
+            if (employees[i] != null) {
                 sum += employees[i].getSalary();
             }
         }
-        System.out.println("Сумма затрат на зарплаты в месяц: " + sum + " рублей.");
+        return sum;
     }
 
-    public static void minSalary() {
+    public static Employee minSalary() {
+        int temp = 0;
         int min = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++){
             if (employees[i] != null) {
                 min = Math.min(min, employees[i].getSalary());
+                temp = i;
             }
         }
-        System.out.println("Минимальная сумма трат за месяц составила: " + min + " рублей.");
+       return employees[temp];
     }
 
-    public static void maxSalary() {
+    public static Employee maxSalary() {
+        int temp = 0;
         int max = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++){
             if (employees[i] != null) {
-                max = Math.max(max, employees[i].getSalary());
+                max = Math.min(max, employees[i].getSalary());
+                temp = i;
             }
         }
-        System.out.println("Максимальная сумма трат за месяц составила " + max+ " рублей.");
+        return employees[temp];
     }
 
     public static void averageSalary() {
@@ -75,14 +81,15 @@ public class Main {
 
         listOfEmployees();
         System.out.println("\n");
-        salaryCosts();
+        System.out.println("Сумма затрат: " + salaryCosts());
         System.out.println("\n");
-        minSalary();
+        System.out.println("Сотрудник с минимальной зарплатой: " + minSalary());
         System.out.println("\n");
-        maxSalary();
+        System.out.println(("Сотрудник с максимальной зарплатой: " + maxSalary()));
         System.out.println("\n");
         averageSalary();
         System.out.println("\n");
         listFullName();
+
     }
 }
